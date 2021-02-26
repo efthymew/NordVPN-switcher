@@ -9,7 +9,7 @@ from os import path
 import platform
 import urllib
 from bs4 import BeautifulSoup
-from fake_useragent import UserAgent
+from random_user_agent.user_agent import UserAgent
 import requests
 import json
 import importlib.resources as pkg_resources
@@ -36,8 +36,8 @@ def additional_settings_linux(additional_settings):
 
 ##########################################
 #Update to the latest useragents#
+
 ua = UserAgent()
-ua.update()
 
 def saved_settings_check():
     print("\33[33mTrying to load saved settings...\33[0m")
@@ -51,7 +51,7 @@ def saved_settings_check():
     return instructions
 
 def set_headers(ua_object):
-    useragent_pick = ua_object.random
+    useragent_pick = ua_object.get_random_user_agent()
     headers = {'User-Agent': useragent_pick,
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
